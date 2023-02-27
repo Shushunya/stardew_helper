@@ -1,0 +1,41 @@
+name,energy,health,price,type,quality
+Blue Jazz,45,20,50,flower,1
+Blue Jazz,63,28,62,flower,2
+Blue Jazz,81,36,75,flower,3
+Blue Jazz,117,52,100,flower,4
+Cauliflower,75,33,175,vegetable,1
+Cauliflower,105,47,218,vegetable,2
+Cauliflower,135,60,262,vegetable,3
+Cauliflower,195,87,360,vegetable,4
+Green Bean,25,11,40,vegetable,1
+Green Bean,35,15,50,vegetable,2
+Green Bean,45,20,60,vegetable,3
+Green Bean,65,29,80,vegetable,4
+Kale,50,22,110,vegetable,1
+Kale,70,31,137,vegetable,2
+Kale,90,40,165,vegetable,3
+Kale,130,58,220,vegetable,4
+Parsnip,25,11,35,vegetable,1
+Parsnip,35,15,43,vegetable,2
+Parsnip,45,20,52,vegetable,3
+Parsnip,65,29,70,vegetable,4
+Potato,25,11,80,vegetable,1
+Potato,35,15,100,vegetable,2
+Potato,45,20,120,vegetable,3
+Potato,65,29,160,vegetable,4
+Tulip,45,20,30,flower,1
+Tulip,63,28,37,flower,2
+Tulip,81,36,45,flower,3
+Tulip,117,52,60,flower,4
+Blueberry,25,11,50,fruit,1
+Blueberry,35,15,62,fruit,2
+Blueberry,45,20,75,fruit,3
+Blueberry,65,29,100,fruit,4
+Corn,25,11,50,vegetable,1
+Corn,35,15,62,vegetable,2
+Corn,45,20,75,vegetable,3
+Corn,65,29,100,vegetable,4
+Hot Pepper,13,5,40,vegetable,1
+Hot Pepper,18,8,50,vegetable,2
+Hot Pepper,23,10,60,vegetable,3
+Hot Pepper,33,14,80,vegetable,4

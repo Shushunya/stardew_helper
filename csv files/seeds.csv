@@ -1,0 +1,8 @@
+name,price,season,time_to_grow,multiharvest,additional
+Jazz Seeds,30,spring,7,False,
+Cauliflower Seeds,80,spring,12,False,
+Bean Starter,60,spring,10,True,regrowth in 3 days
+Kale Seeds,70,spring,6,False,harvest with scyth
+Parsnip Seeds,20,spring,4,False,
+Potato Seeds,50,spring,6,False,can drop 2 potatoes
+Tulip Bulb,20,spring,6,False,
