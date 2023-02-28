@@ -1,11 +1,11 @@
-from typing import List
-from typing import Optional
-from sqlalchemy import ForeignKey
-from sqlalchemy import String
+from typing import List, Optional
+from sqlalchemy import ForeignKey, String, Enum
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
+
+from enums import SeasonEnum, CropTypeEnum
 
 
 class Base(DeclarativeBase):
@@ -16,24 +16,36 @@ class Seed(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(unique=True)
     price: Mapped[int]
-    season: Mapped[str]
+    season: Mapped[Enum] = mapped_column(Enum(SeasonEnum))
     time_to_grow: Mapped[int]
-    multiharvest: Mapped[bool]
-    additional: Mapped[Optional[str]]
-    crop: Mapped["Crop"] = relationship(back_populates="seeds")
+    multiharvest: Mapped[bool] = mapped_column(nullable=True)
+    regrowth_time: Mapped[int] = mapped_column(nullable=True)
+    multicrop: Mapped[bool] = mapped_column(nullable=True)
+    throws_seeds: Mapped[bool] = mapped_column(nullable=True)
 
     def __repr__(self) -> str:
         return f"Seed(id={self.id!r}, name={self.name!r})"
+
 
 class Crop(Base):
     __tablename__ = "crops"
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(unique=True)
-    seed_id: Mapped[int] = mapped_column(ForeignKey("seeds.id"))
-    seeds: Mapped["Seed"] = relationship(back_populates="crop")
+    type: Mapped[str] = mapped_column(Enum(CropTypeEnum))
+    # seed_id: Mapped[int] = mapped_column(ForeignKey("seeds.id"))
+    # seeds: Mapped["Seed"] = relationship(back_populates="crop")
     
     def __repr__(self) -> str:
         return f"Crop(id={self.id!r}, name={self.name!r})"
+
+class CropQuality(Base):
+    __tablename__ = "crop_qualities"
+    crop_id: Mapped[int] = mapped_column(ForeignKey("crops.id"), primary_key=True)
+    quality: Mapped[int] = mapped_column(primary_key=True)
+    price: Mapped[int]
+    energy: Mapped[int]
+    health: Mapped[int]
+
 
 # class Product(Base):
 #     __tablename__ = "products"
