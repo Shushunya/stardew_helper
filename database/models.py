@@ -32,7 +32,7 @@ class Crop(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(unique=True)
     type: Mapped[str] = mapped_column(Enum(CropTypeEnum))
-    # seed_id: Mapped[int] = mapped_column(ForeignKey("seeds.id"))
+    seed_id: Mapped[int] = mapped_column(ForeignKey("seeds.id"))
     # seeds: Mapped["Seed"] = relationship(back_populates="crop")
     
     def __repr__(self) -> str:
