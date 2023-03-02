@@ -5,7 +5,7 @@ from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
 
-from enums import SeasonEnum, CropTypeEnum
+from enums import SeasonEnum, CropTypeEnum, AnimalHome
 
 
 class Base(DeclarativeBase):
@@ -26,12 +26,11 @@ class Seed(Base):
     def __repr__(self) -> str:
         return f"Seed(id={self.id!r}, name={self.name!r})"
 
-
 class Crop(Base):
     __tablename__ = "crops"
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(unique=True)
-    type: Mapped[str] = mapped_column(Enum(CropTypeEnum))
+    type: Mapped[Enum] = mapped_column(Enum(CropTypeEnum))
     seed_id: Mapped[int] = mapped_column(ForeignKey("seeds.id"))
     # seeds: Mapped["Seed"] = relationship(back_populates="crop")
     
@@ -46,6 +45,29 @@ class CropQuality(Base):
     energy: Mapped[int]
     health: Mapped[int]
 
+class Animal(Base):
+    __tablename__ = "animals"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(unique=True)
+    lives_in: Mapped[Enum] = mapped_column(Enum(AnimalHome))
+    production_time : Mapped[int]
+    price_to_buy: Mapped[int]
+
+class AnimalProduct(Base):
+    __tablename__ = "animal_products"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(unique=True)
+    eatable: Mapped[bool] = mapped_column(default=True)
+    cockable: Mapped[bool] = mapped_column(default=True)
+    animal_id: Mapped[int] = mapped_column(ForeignKey("animals.id"))
+
+class AnimalProductQuality(Base):
+    __tablename__ = "animal_product_qualities"
+    animal_product_id: Mapped[int] = mapped_column(ForeignKey("animal_products.id"), primary_key=True)
+    quality: Mapped[int] = mapped_column(primary_key=True)
+    price: Mapped[int]
+    energy: Mapped[int]
+    health: Mapped[int]
 
 # class Product(Base):
 #     __tablename__ = "products"
