@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 
-import models
+from db import models
 
 engine = create_engine("sqlite:///test_db.sqlite", echo=True)
 models.Base.metadata.create_all(engine)

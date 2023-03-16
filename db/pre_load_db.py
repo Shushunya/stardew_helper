@@ -1,10 +1,7 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, Session
+from sqlalchemy.orm import sessionmaker
 
-from dateutil.parser import parse
-import csv
-
-import models as m
+from db import models as m
 
 engine = create_engine("sqlite:///csv_db.sqlite3")
 m.Base.metadata.create_all(engine)
