@@ -3,9 +3,11 @@
 #     ('animals', 'animal_products', 'animal_products_qualities', 'products', 'meals')
 # ]
 #
-from functionality.farming.item_classes import *
-# from db.models import *
-def get_all_items(item_type: str) -> list[str]:
+# from functionality.farming.item_classes import *
+from db.models import *
+
+
+def get_all_items(item_type: str):
     import db
     from sqlalchemy import create_engine, select
     from sqlalchemy.orm import Session
@@ -35,7 +37,7 @@ def get_all_items(item_type: str) -> list[str]:
 
 def pretty_output(data):
     print(data)
-    #max len of a crop
+    # max len of a crop
     # crops_count = len(data)
     # print(crops_count)
     # count_string = "#".rjust(len(str(crops_count)))
@@ -48,10 +50,28 @@ def pretty_output(data):
     # print("-"*len(header_string))
 
     for i in range(len(data)):
-    #     item_count = f"{i}".rjust(len(str(crops_count)))
-    #     item_name = f"{data[i][0].name}".center(name_len)
-    #     item_type = f"{data[i][0].type.name}".center(len("vegetable"))
-    #     print(item_count+"|"+item_name+"|"+item_type+"|")
+        #     item_count = f"{i}".rjust(len(str(crops_count)))
+        #     item_name = f"{data[i][0].name}".center(name_len)
+        #     item_type = f"{data[i][0].type.name}".center(len("vegetable"))
+        #     print(item_count+"|"+item_name+"|"+item_type+"|")
         print(data[i][0])
 
 
+def get_a_chain(item_type: str, item_name: str):
+    import db
+    from sqlalchemy import create_engine, select
+    from sqlalchemy.orm import Session
+
+    result = []
+
+    engine = create_engine("postgresql+psycopg2://postgres:qwerty02@localhost:5432/stardew valley helper")
+    db.Base.metadata.create_all(engine)
+
+    match item_type:
+        case 'seeds':
+            stmt = select(Crop).join(Seed).where(Seed.name == item_name)
+
+    with Session(engine) as session:
+        result.append(session.execute(stmt).all())
+
+    return result
