@@ -1,23 +1,40 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine, select
+from sqlalchemy.orm import Session
 
-from db import models as m
+from models import Crop, Seed, Base, Animal
 
-engine = create_engine("sqlite:///csv_db.sqlite3")
-m.Base.metadata.create_all(engine)
+engine = create_engine("postgresql+psycopg2://postgres:qwerty02@localhost:5432/stardew valley helper")
+Base.metadata.create_all(engine)
 
 
-import pandas as pd
+def load_csv_to_db(file_name, table):
+    import pandas as pd
 
-data = pd.read_csv("seeds.csv")
-# print(data.dtypes)
+    data = pd.read_csv(file_name)
+    # print(data.dtypes)
 
-data.to_sql(con=engine, name=m.Seed.__tablename__, if_exists="append", index=False)
+    data.to_sql(con=engine, name=table.__tablename__, if_exists="append", index=False)
+#
+#
+# load_csv_to_db(r'../csv files/seeds.csv', Seed)
+# load_csv_to_db(r'../csv files/crops.csv', Crop)
+# load_csv_to_db(r'../csv files/animals.csv', Animal)
 
-session = sessionmaker(bind=engine)
-s = session()
+def check():
+    with Session(engine) as session:
+        stmt = select(Crop.name).join(Seed).where((Seed.throws_seeds == True))
+        seeds = session.execute(select(Seed.id, Seed.name).order_by(Seed.id)).all()
+        crops = session.execute(select(Crop)).all()
+        result = session.execute(stmt).all()
+        animals = session.execute(select(Animal.name)).all()
 
-results = s.query(m.Seed).where(m.Seed.multiharvest==True)
+        print(result)
+        print(animals, seeds)
 
-for r in results:
-    print(r)
+        # session.add_all([parsnip, jazz, cauliflower, garlic, green_bean, kale, potato, strawberry, tulip,
+        # rice]) session.add_all([blueberry, corn, hops, pepper, melon, poppy, radish, cabbage, spangle, sunflower,
+        # tomato, wheat])
+        session.commit()
+
+
+check()

@@ -5,11 +5,12 @@ from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
 
-from enums import SeasonEnum, CropTypeEnum, AnimalHome
+from db.enums import SeasonEnum, CropTypeEnum, AnimalHome
 
 
 class Base(DeclarativeBase):
     pass
+
 
 class Seed(Base):
     __tablename__ = "seeds"
@@ -26,16 +27,24 @@ class Seed(Base):
     def __repr__(self) -> str:
         return f"Seed(id={self.id!r}, name={self.name!r})"
 
+
 class Crop(Base):
     __tablename__ = "crops"
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(unique=True)
     type: Mapped[Enum] = mapped_column(Enum(CropTypeEnum))
     seed_id: Mapped[int] = mapped_column(ForeignKey("seeds.id"))
+
+    def __init__(self, name, type, seed_id):
+        self.name = name
+        self.type = type
+        self.seed_id = seed_id
+
     # seeds: Mapped["Seed"] = relationship(back_populates="crop")
-    
-    def __repr__(self) -> str:
-        return f"Crop(id={self.id!r}, name={self.name!r})"
+
+    # def __repr__(self) -> str:
+    #     return f"Crop(id={self.id!r}, name={self.name!r})"
+
 
 class CropQuality(Base):
     __tablename__ = "crop_qualities"
@@ -45,13 +54,15 @@ class CropQuality(Base):
     energy: Mapped[int]
     health: Mapped[int]
 
+
 class Animal(Base):
     __tablename__ = "animals"
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(unique=True)
     lives_in: Mapped[Enum] = mapped_column(Enum(AnimalHome))
-    production_time : Mapped[int]
+    production_time: Mapped[int]
     price_to_buy: Mapped[int]
+
 
 class AnimalProduct(Base):
     __tablename__ = "animal_products"
@@ -60,6 +71,7 @@ class AnimalProduct(Base):
     eatable: Mapped[bool] = mapped_column(default=True)
     cockable: Mapped[bool] = mapped_column(default=True)
     animal_id: Mapped[int] = mapped_column(ForeignKey("animals.id"))
+
 
 class AnimalProductQuality(Base):
     __tablename__ = "animal_product_qualities"
@@ -77,7 +89,7 @@ class AnimalProductQuality(Base):
 #     energy: Mapped[int]
 #     health: Mapped[int]
 #     can_be_cooked: Mapped[bool]
-    
+
 #     # produced_in: Mapped[Optional[str]]
 #     def __repr__(self) -> str:
 #         return f"Product(id={self.id!r}, name={self.name!r})"
