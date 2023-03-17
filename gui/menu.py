@@ -1,4 +1,4 @@
-from functionality import get_all_items, pretty_output
+from functionality import get_all_items, pretty_output, get_a_chain
 
 
 # menu
@@ -18,4 +18,10 @@ match option.strip():
         pretty_output(res)
 
     case '2':
-        print("enter type and name of the starting item")
+        print("Select type of the items you want to see:\n1. seeds\n2. crops\n3. animals\n4. animal prodcuts")
+        type_selected = input("> ").strip()
+        print("enter th name of the item")
+        item_name = input("> ").strip()
+        res = get_a_chain(type_selected, item_name)
+        print(res)
+
