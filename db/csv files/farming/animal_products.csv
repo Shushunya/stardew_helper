@@ -1,0 +1,19 @@
+name,eatable,cookable,animal_id
+egg,True,True,1
+large egg,True,True,1
+brown egg,True,True,2
+large brown egg,True,True,2
+voig egg,True,True,3
+golden egg,True,True,4
+ostrich egg,True,True,12
+duck feather,False,False,5
+duck egg,True,True,5
+wool,False,False,6
+rabit's foot,False,False,6
+milk,True,True,8
+large milk,True,True,8
+goat milk,True,True,9
+large goat milk,True,True,9
+wool,False,False,10
+truffle,False,True,11
+dinosaur egg,False,False,7

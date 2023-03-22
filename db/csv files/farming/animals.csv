@@ -1,0 +1,13 @@
+name,lives_in,production_time,price_to_buy
+chicken,coop,1,800
+brown chicken,coop,1,800
+void chicken,coop,1,0
+golden chicken,coop,1,0
+duck,big coop,2,1200
+rabbit,deluxe coop,4,1
+dinosaur,big coop,7,0
+cow,barn,1,1500
+goat,big barn,2,4000
+sheep,deluxe barn,3,8000
+pig,deluxe barn,1,160000
+ostrich,barn,7,0
