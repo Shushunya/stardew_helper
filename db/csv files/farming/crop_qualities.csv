@@ -1,4 +1,4 @@
-crop_id,quality,price,energy,health, edible
+crop_id,quality,price,energy,health,edible
 1,1,35,25,11,True
 1,2,43,35,15,True
 1,3,52,45,20,True
@@ -123,7 +123,7 @@ crop_id,quality,price,energy,health, edible
 31,2,400,0,0,False
 31,3,480,0,0,False
 31,4,640,0,0,False
-32,1,160,45,20
-32,2,200,63,28
-32,3,240,81,36
-32,4,320,117,52
+32,1,160,45,20,True
+32,2,200,63,28,True
+32,3,240,81,36,True
+32,4,320,117,52,True
