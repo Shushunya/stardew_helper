@@ -1,0 +1,33 @@
+name,price,season,time_to_grow,multiharvest,regrowth_time,multicrop,throws_seeds
+parsnip seeds,20,spring,4,False,0,False,False
+jazz seeds,30,spring,7,False,0,False,False
+cauliflower seeds,80,spring,12,False,0,False,False
+garlic seeds,40,spring,4,False,0,False,False
+bean starter,60,spring,10,True,3,False,False
+kale seeds,70,spring,6,False,0,False,False
+potato seeds,50,spring,6,False,0,True,False
+strawberry seeds,100,spring,8,True,4,True,False
+tulip bulb,20,spring,6,False,0,False,False
+rice shoot,40,spring,6,False,0,False,False
+blueberry seeds,80,summer,13,True,4,True,False
+corn seeds,150,summer,14,True,4,False,False
+hops starter,60,summer,11,True,1,False,False
+pepper seeds,40,summer,5,True,3,True,False
+melon seeds,80,summer,12,False,0,False,False
+poppy seeds,100,summer,7,False,0,False,False
+radish seeds,40,summer,6,False,0,False,False
+red cabbage seeds,100,summer,9,False,0,False,False
+spangle bulb,50,summer,8,False,0,False,False
+sunflower shoot,200,summer,8,False,0,False,True
+tomato shoot,50,summer,11,True,4,False,False
+wheat shoot,10,summer,4,False,0,False,False
+amaranth seeds,70,autumn,7,False,0,False,False
+artichoke seeds,30,autumn,8,False,0,False,False
+beet seeds,30,autumn,6,False,0,False,False
+bok choy seeds,50,autumn,4,False,0,False,False
+cranberry seeds,240,autumn,7,True,5,True,False
+eggplant seeds,20,autumn,5,True,5,True,False
+fairy seeds,200,autumn,12,False,0,False,False
+grape starter,60,autumn,10,True,3,False,False
+pumpkin seeds,100,autumn,13,False,0,False,False
+yam seeds,60,autumn,10,False,0,False,False
